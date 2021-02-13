@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite de pruebas Alpha" thread-count="10">
+	<parameter name="remote-driver" value="false"/>
+	<parameter name="platform" value="LINUX"/>
+	<parameter name="suite-browser" value="chrome"/>
+	<parameter name="hub" value="http://localhost:4444/wd/hub"/>
+	<parameter name="ie-driver" value="" />
+	<parameter name="edge-driver" value="" />
+	<parameter name="firefox-driver" value="/home/jperez/webdrivers/geckodriver" />
+	<parameter name="chrome-driver" value="//home//jperez//webdrivers//chromedriver" />
+	<parameter name="safari-driver" value="" />
+	<parameter name="find-element-timeout" value="3" />
+	<parameter name="any-by-find-timeout" value="0" />
+	<parameter name="page-load-timeout" value="3" />
+	<parameter name="home-url" value="https://nicmx.github.io/FORT-validator" />
+	<parameter name="locators-properties-path" value="properties" />
+	<parameter name="csv-data-providers-path" value="csv" />
+	<parameter name="csv-separator" value="," />
+	
+	<test name="FortMain-Logging" parallel="methods">
+		<groups>
+			<run>
+				<include name="config"></include>
+				<include name="test"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="qa.lib.fort.tests.FortMainTest">
+			<methods>
+				<include name="displayLoggingInfoTest"/>
+			</methods>
+			</class>			
+		</classes>
+	</test>
+	<test name="FortMain-CompilationAndInstallation"  parallel="methods">
+	<parameter name="FortMain-CompilationAndInstallation.browser" value="chrome"/>
+		<groups>
+			<run>
+				<include name="test"></include>
+				<include name="config"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="qa.lib.fort.tests.FortMainTest">
+			<methods>
+				<include name="displayCompilationAndInstallationInfoTest"/>
+			</methods>
+			</class>			
+		</classes>
+	</test>
+	<test name="FortMain-All"  parallel="methods">
+	<parameter name="FortMain-All.browser" value="firefox"/>
+		<groups>
+			<run>
+				<include name="test"></include>
+				<include name="config"></include>
+			</run>
+		</groups>
+		
+		<classes>
+			<class name="qa.lib.fort.tests.FortMainTest">
+				<methods>
+					<include name="displayLoggingInfoTest"/>
+					<include name="displayCompilationAndInstallationInfoTest"/>
+				</methods>
+			</class>			
+		</classes>
+	</test>
+
+
+</suite>
